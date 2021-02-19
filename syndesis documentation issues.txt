@@ -1,0 +1,8 @@
+the --nodev flag. so much time was wasted due to this.
+
+the "pattern" field. it is not mentioned in the documentation but is required for the connector to show up while creating integrations. How would one know that it is required for the connectors to show up? I found it while scanning through json of connectors from app/connector and thought it might have impact. There are many such other occurances.
+
+There is no mention of verifiers or meta in the documentation. And connectors just do not execute without them. Where am I to find information about them?
+
+There are many broken links in the documentation.
+

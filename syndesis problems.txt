@@ -1,0 +1,58 @@
+
+New connector building
+
+- yarn install runs independently but fails in maven plugin
+
+copied sql connector to sql2 and made necessary changes like changing artifact-id, connector id in json connector descriptor
+- 'dependencies.dependency.version' for io.syndesis.connector:connector-sql2:jar is missing. @ io.syndesis.connector:connector-support-catalog:[unknown-version],
+- meta project is not building because it cannot find connector-sql2 dependency although it is there and found by another projects like integration
+- later somehow it changed to missing depencency version, which was resolved after additng version explicitly. version tag is not explicitly mentioned for other preexisting components.
+
+- gettting missing version error for connector-sql2 now for app/s2i/target/it/project/pom.xml. This is a generated pom file and I dont know why version tag is missing even when i have added if wherever sql2 dependency is declared.
+- trying changing name connector-sql2 to connector-another. doesn't work as expected.
+- trying to find out why dependencyManagement entry has no effect.
+
+So it turns out that in some POM files they have used ${project.groupId}, whereas in others hard code project name is used. This lead to broken dependencyManagement. Entire day is lost.
+
+- syndesis build is successful. But the connector does not show up after syndesis minishift --install --local.
+- May be it is not happy with two connectors shring same 'sql' component schema. Trying now commenting original 'sql' maven module. Didn't work.
+
+- Trying yet another sample connector
+
+- Ensuring that the Database connector seen in the deployment is the not the new sql2 connector. Although the text should have been ADatabase. Chaging the label of one of the form controls from 'Connector URL' to 'Connector URLLLLL' to confirm.
+- tools/bin/syndesis build -f -i -m s2i is failing. Falling back to full build. (try the same command with minishift stoped later).
+- Confirmed that the Database connector seen is not the new sql2 connector. the label is still 'Connector URL'.
+- This strange that the sql connector is seen even removing that module from the parent connector pom. Checking now whether or not the --local flag is having effect.
+- Confirming one more time that it is really not sql2 connector by removing the required attributes.
+
+
+28/12
+- Tried various profiles to build s2i
+
+29/12
+- Trying syndesis build -f -i -m s2i -e
+
+		[ERROR] F8: Build for syndesis-s2i-s2i failed: stream was reset: NO_ERROR
+		[ERROR] F8: syndesis-s2i-s2i-1		BuildPodEvicted	The node was low on resource: ephemeral-storage. Container docker-build was using 32Ki, which exceeds its request of 0. 
+		[ERROR] F8: Failed to execute the build [Unable to build the image using the OpenShift build service]
+		
+		Trying to configure logging driver on minishift node as per https://access.redhat.com/solutions/4367311
+		Did not work. Trying to recreate minishift VM.
+
+- Documentation says login with developer account 'oc login -u developer -p developer' 	to build server and s2i. But a system:admin login is required for building server and s2i.	
+
+30/10
+- Minishift went unstable and stopped coming up.
+- Installed syndesis on fresh minishift from local build and syndesis-server stopped coming up due to connection time out for PostgresDB.
+- Trying installation from tat 1.10.0 hoping that the local sysdesis-server image might have broken something.
+- Minishift is not starting now due to error: error pulling Docker image openshift/origin-cli:v3.11.0
+- syndesis install getting stuck at
+	operator binary not found under /home/infracloud/.syndesis/bin/syndesis-operator, attempting to download...
+
+
+31/12
+- custom connector is again not appearing. doing the following to make is appear.
+- force delete minishift VM so that there are no older syndesis images are present.
+- statrt minishift an ensure that there are no syndesis images.
+- stop minishift.
+- syndesis build --skip-test --clean so that the project is built clean.

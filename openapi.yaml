@@ -1,0 +1,64 @@
+openapi: 3.0.0
+info:
+  title: Sample API
+  description: 
+  version: 0.1.9
+servers:
+  - url: https://ec2-3-81-37-61.compute-1.amazonaws.com:3001/api
+    description: Optional server description, e.g. Main (production) server
+paths:
+  /test:
+    post:
+      summary: Creates a new Type.
+      parameters:
+        - in: header
+          name: X-Lingk-Context
+          schema:
+            type: string
+            format: uuid
+          required: true
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Type'
+      responses:
+        '201':
+          description: Created
+        '500':
+          description: Error
+    get:
+      summary: Get types.
+      parameters:
+        - in: header
+          name: X-Lingk-Context
+          schema:
+            type: string
+            format: uuid
+          required: true
+      responses:
+        '200':
+          description: OK
+        '500':
+          description: Error
+components:
+  schemas:
+    Type:
+      properties:
+        type:
+          type: string
+        color:
+          type: string
+      # Both properties are required
+      required:  
+        - type
+        - color
+  securitySchemes:
+    ApiKeyAuth:        # arbitrary name for the security scheme
+      type: apiKey
+      in: header       # can be "header", "query" or "cookie"
+      name: Bearer  # name of the header, query parameter or cookie
+# 2) Apply the API key globally to all operations
+security:
+  - ApiKeyAuth: []

@@ -1,0 +1,25 @@
+get data from salesforce using camel component
+create step extenssion
+
+explore salesforce syndesis connector
+enhance salesforce syndesis connector
+
+install syndesis from 1.10.0 with enhanced connector
+
+
+comsumer salesforce streaming
+----------------------------------------
+salesforce:topic?options
+
+producer salesforce
+-------------------------
+salesforce:operationName?options
+
+
+Downloading DTOs for SF objects
+-------------------------------------------
+mvn camel-salesforce:generate -DcamelSalesforce.clientId=3MVG9VeAQy5y3BQU5c1Eeq7CQsAYfGsba4Xup1TTPy8VNmRGwRVAXcagjkjr1eVIY9mP76wx1_T0tMCPn3uj_ -DcamelSalesforce.clientSecret=6582E51AEEE1AD1C68120A7D73C6B5F78D554B2280F85F0FA6646303EFD7E4E3 -DcamelSalesforce.userName=anandkane@yahoo.com -DcamelSalesforce.password=ontoes123
+
+Running camel salesforce component example
+- mvn compile camel:run is result in error
+	No plugin found for prefix 'camel' in the current project and in the plugin groups [org.apache.maven.plugins, org.codehaus.mojo]

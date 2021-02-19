@@ -1,0 +1,17 @@
+
+client.secret.centralu.norwich-demo-project
+Bearer toSj4e-QMloxlnGdWRNEirogzlxYOAV06KzpRUXezM4mNmJ3surgJz8dKzgKaGzR3ZnINH1UOl71n0HjWEXIIw==
+
+http://ec2-3-81-37-61.compute-1.amazonaws.com:8080/nifi/?processGroupId=9ba6bd11-17a3-308c-20ac-269248c8f9b7&componentIds=d700d859-0f49-37b1-8c7b-f12475eeff96
+
+https://ec2-3-81-37-61.compute-1.amazonaws.com:9001/dashboard
+
+
+
+Bearer AAAAAAAAAAAAAAAAAAAAAN1bGwEAAAAAIl6GVSPzIdim1%2FPrSYC7BXO36lc%3DN4SQornNnwaWIoX4hNRRmFZyTCkX5nJbAyzWWJcyOGAd7ZhogX
+
+curl -X GET "https://api.twitter.com/labs/2/users/201149726" -H  "accept: application/json" -H  "Authorization: Bearer AAAAAAAAAAAAAAAAAAAAAN1bGwEAAAAAIl6GVSPzIdim1%2FPrSYC7BXO36lc%3DN4SQornNnwaWIoX4hNRRmFZyTCkX5nJbAyzWWJcyOGAd7ZhogX" --header 'Cookie: personalization_id="v1_3Y75DvDErK1Eqhrm4idWqg=="; guest_id=v1%3A161364038441576867'
+
+curl --location --request GET 'https://api.twitter.com/labs/2/users/201149726' \
+--header 'Authorization: Bearer AAAAAAAAAAAAAAAAAAAAAN1bGwEAAAAAIl6GVSPzIdim1%2FPrSYC7BXO36lc%3DN4SQornNnwaWIoX4hNRRmFZyTCkX5nJbAyzWWJcyOGAd7ZhogX' \
+--header 'Cookie: personalization_id="v1_3Y75DvDErK1Eqhrm4idWqg=="; guest_id=v1%3A161364038441576867'

@@ -1,0 +1,45 @@
+openapi: 3.0.0
+info:
+  title: Sample API - GET No Auth
+  description: some description
+  version: 0.1.9
+servers:
+  - url: https://ec2-3-81-37-61.compute-1.amazonaws.com:3001
+    description: Optional server description, e.g. Main (production) server
+paths:
+  /api/test:
+    get:
+      summary: Get types.
+      parameters:
+        - in: header
+          name: X-Lingk-Context
+          schema:
+            type: string
+          required: true
+      responses:
+        '200':
+          description: A list of types.
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/MyObject'
+        '500':
+          description: Error
+components:
+  schemas:
+    MyObject:
+      properties:
+        type:
+          type: string
+        color:
+          type: string
+      required:  
+        - type
+        - color
+  securitySchemes:
+    ApiKeyAuth:
+      type: apiKey
+      in: header
+      name: Authorization 

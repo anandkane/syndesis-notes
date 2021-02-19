@@ -1,0 +1,59 @@
+oc login -u system:admin
+
+create namespace syndesis if missing.
+
+to build operator:
+install/operator/build.sh
+
+syndesis build --app-images --image --flash --project syndesis
+
+used to build backend (optional)
+syndesis build -f -i -b
+
+
+syndesis build --flash --image --project syndesis --module server
+syndesis build --flash --image --project syndesis --module s2i
+syndesis build --flash --image --project syndesis --module meta
+syndesis build --flash --image --project syndesis --module ui-react
+
+docker image tag 172.30.1.1:5000/syndesis/syndesis-meta:1.10.0 docker.io/syndesis/syndesis-meta:1.10.0
+docker image tag 172.30.1.1:5000/syndesis/syndesis-server:1.10.0 docker.io/syndesis/syndesis-server:1.10.0
+docker image tag 172.30.1.1:5000/syndesis/syndesis-s2i:1.10.0 docker.io/syndesis/syndesis-s2i:1.10.0
+
+docker image tag 172.30.1.1:5000/syndesis/syndesis-dv:1.10.0 docker.io/syndesis/syndesis-dv:1.10.0
+docker image tag 172.30.1.1:5000/syndesis/syndesis-ui:1.10.0 docker.io/syndesis/syndesis-ui:1.10.0
+
+
+docker tag 172.30.1.1:5000/images/syndesis-s2i:1.10.0 anandkane/syndesis-s2i:1.10.0
+docker image push anandkane/syndesis-s2i
+
+oc login -u developer -p developer
+
+syndesis minishift --install --nodev --local --tag 1.10.0 --project project1
+
+
+
+./dist/linux-amd64/syndesis-operator install cluster --image docker.io/anandkane/syndesis-operator --tag latest
+./dist/linux-amd64/syndesis-operator install operator --image docker.io/anandkane/syndesis-operator --tag latest
+./dist/linux-amd64/syndesis-operator install app
+
+
+./dist/linux-amd64/syndesis-operator install cluster --image image-registry.openshift-image-registry.svc:5000/syndesis/syndesis-operator --tag latest
+./dist/linux-amd64/syndesis-operator install operator --image image-registry.openshift-image-registry.svc:5000/syndesis/syndesis-operator --tag latest
+./dist/linux-amd64/syndesis-operator install app
+
+
+oc policy add-role-to-user \
+    system:image-puller system:serviceaccount:dev-app1:default \
+    --namespace=operator
+	
+	
+	
+On cluster:
+-----------------
+
+syndesis install --setup --grant developer --cluster
+
+login as developer
+
+syndesis install

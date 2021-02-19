@@ -1,0 +1,32 @@
+ssh root@143.110.252.0
+ssh root@143.110.252.0 -D8130 -N -vv
+
+curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data '{"text" : "payload from shell"}' http://localhost:8080/submit1
+curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data '{"id" : "4"}' http://localhost:8080/submit2
+
+curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data '{"text" : "payload from shell"}' http://192.168.99.135:32197/submit1
+curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST --data '{"id" : "4"}' http://192.168.99.135:32197/submit2
+
+externalURL=https://i-query-winelist-table-dev-app1.192.168.42.244.nip.io/webhook/qxZO1niFa8OE9waPHlAWcMSrb9qXnngUnvKcWQsbQNtncINYJD
+curl -k --header "Content-Type: application/json" --request POST --data '[{"id": "42"}, {"id": "91"}]' https://i-upstream-mapping-test-upstream.192.168.42.244.nip.io/webhook/NIlFPj8kYv16yd0QLNK8wcAsevMSw73QuQcrlEnnSPeqbRrFPe
+
+curl -k --header "Content-Type: application/json" --request POST --data '{"header": "client.secret.centralu.norwich-demo-project"}' https://i-nifi-get-no-auth-with-yy-customer1.apps.syndesis.openshift.lingkto.com/webhook/Yhqw1BxjMGnFGw0WPupw3mMqxzydXfr8qjP4LmUWQmrH5ChVx6
+
+
+curl -k --header "Content-Type: application/json" --request POST --data '[{"id": "00Q2y000002hisDEAQ"}, {"id": "00Q2y000002hisCEAQ"}]' https://i-create-sf-lead-dev1.192.168.42.51.nip.io/webhook/i3BuhRYBKSJhhFTlUIBlBKFgGhkQMdIeYNLh9oWdRgNn4bQlRM
+
+curl -k --header "Content-Type: application/json" --request POST --data '[{"id": "00Q2y000002hisDEAQ"}, {"id": "00Q2y000002hisCEAQ"}]' https://i-salesforce-lead-modification-changed-dev-app1.192.168.42.244.nip.io/webhook/u3a2arhcBXW7An7814XPOO8tebjicSnuvNtScNNfo6o37frxhl
+
+
+
+curl -k --header "Content-Type: application/json" --request POST --data '[{"id": "00Q2y000002hisDEAQ"}, {"id": "00Q2y000002hisCEAQ"}]' https://i-get-salesforce-lead2-dev-app1.192.168.42.244.nip.io/webhook/GsRWXdA55Lw4zdNwO3JMGWbqyCh40z5DBNHprD9hwwkdgQrNtT
+
+
+curl -k --header "Content-Type: application/json" --request POST --data '[{"id": "00Q2y000002hisDEAQ"}, {"id": "00Q2y000002hisCEAQ"}]' https://i-upstream-get-salesforce-lead-upstream.192.168.42.244.nip.io/webhook/5N65xMQPFakJ2gfB07gMunRMDqGx3iosqsSKAUXypcW26Lz4oH
+
+
+API provider
+
+externalURL=https://i-api-provider-test1-dev1.192.168.42.51.nip.io/
+
+curl -k --header "Content-Type: application/json" --request GET $externalURL

@@ -1,0 +1,39 @@
+
+
+
+
+
+syndesis dev --cleanup
+# delete all syndesis integration resources 
+oc delete all -l syndesis.io/app=syndesis --all-namespaces 
+
+# remove old integration runtime images 
+docker rmi $(docker images -f "reference=*/syndesis/i-*" -q) 
+
+# remove old syndesis images 
+docker rmi $(docker images -f "reference=*/syndesis/syndesis-*" -q) 
+
+# remove docker containers from previous minishift starts 
+docker rm $(docker ps -qa) 
+docker rmi $(docker images -f "dangling=true" -q)
+
+# remove exited containers:
+docker ps --filter status=dead --filter status=exited -aq | xargs -r docker rm -v
+
+docker system prune --all
+
+docker system prune --volumes
+
+
+
+
+
+
+The following service(s) have been created in your project: mysql.
+
+       Username: anand
+       Password: anand
+  Database Name: testdb
+ Connection URL: mysql://mysql:3306/
+
+For more information about using this template, including OpenShift considerations, see https://github.com/sclorg/mysql-container/blob/master/5.7/root/usr/share/container-scripts/mysql/README.md .

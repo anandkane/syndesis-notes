@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<routes xmlns="http://camel.apache.org/schema/spring"> 
+    <route customId="true" id="-MSfox5WqJQUvZcGQkMG">
+        <from customId="true" id="-MSfp5QFqJQUvZcGQkMG" uri="servlet-0-0"/>
+        <pipeline customId="true" id="step:-MSfp5QFqJQUvZcGQkMG">
+            <setHeader headerName="Syndesis.STEP_ID" id="setHeader1">
+                <constant>-MSfp5QFqJQUvZcGQkMG</constant>
+            </setHeader>
+            <setHeader headerName="Syndesis.FLOW_ID" id="setHeader2">
+                <constant>-MSfox5WqJQUvZcGQkMG</constant>
+            </setHeader>
+        </pipeline>
+        <split customId="true" id="step:-MSfp9PdqJQUvZcGQkMH">
+            <expressionDefinition>io.syndesis.integration.runtime.handlers.SplitStepHandler$SplitExpression@11ee02f8</expressionDefinition>
+            <setHeader headerName="Syndesis.STEP_ID" id="setHeader3">
+                <constant>-MSfp9PdqJQUvZcGQkMH</constant>
+            </setHeader>
+            <process customId="true" id="capture-out:-MSfp9PdqJQUvZcGQkMH"/>
+            <pipeline customId="true" id="step:-MSfpYRbqJQUvZcGQkMH">
+                <setHeader headerName="Syndesis.STEP_ID" id="setHeader4">
+                    <constant>-MSfpYRbqJQUvZcGQkMH</constant>
+                </setHeader>
+                <process id="process1"/>
+                <to id="to1" uri="atlas:mapping-flow-0-step-2.json?encoding=UTF-8&amp;sourceMapName=Syndesis.CAPTURED_OUT_MESSAGES_MAP"/>
+                <process id="process2"/>
+                <process customId="true" id="capture-out:-MSfpYRbqJQUvZcGQkMH"/>
+            </pipeline>
+            <pipeline customId="true" id="step:-MSfpGWhqJQUvZcGQkMH">
+                <setHeader headerName="Syndesis.STEP_ID" id="setHeader5">
+                    <constant>-MSfpGWhqJQUvZcGQkMH</constant>
+                </setHeader>
+                <to id="to2" uri="sql-0-3"/>
+                <process customId="true" id="capture-out:-MSfpGWhqJQUvZcGQkMH"/>
+            </pipeline>
+            <pipeline customId="true" id="step:-MSfp7d6qJQUvZcGQkMG">
+                <setHeader headerName="Syndesis.STEP_ID" id="setHeader6">
+                    <constant>-MSfp7d6qJQUvZcGQkMG</constant>
+                </setHeader>
+                <log id="log1" loggingLevel="INFO" marker="-MSfp7d6qJQUvZcGQkMG" message="Body: [${bean:bodyLogger}] "/>
+            </pipeline>
+        </split>
+    </route>
+</routes>
