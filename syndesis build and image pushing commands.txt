@@ -38,9 +38,9 @@ syndesis minishift --install --nodev --local --tag 1.10.0 --project project1
 ./dist/linux-amd64/syndesis-operator install app
 
 
-./dist/linux-amd64/syndesis-operator install cluster --image image-registry.openshift-image-registry.svc:5000/syndesis/syndesis-operator --tag latest
-./dist/linux-amd64/syndesis-operator install operator --image image-registry.openshift-image-registry.svc:5000/syndesis/syndesis-operator --tag latest
-./dist/linux-amd64/syndesis-operator install app
+syndesis-operator install cluster --image image-registry.openshift-image-registry.svc:5000/syndesis/syndesis-operator --tag latest
+syndesis-operator install operator --image image-registry.openshift-image-registry.svc:5000/syndesis/syndesis-operator --tag latest
+syndesis-operator install app
 
 
 oc policy add-role-to-user \

@@ -10,7 +10,16 @@ curl -i -H "Accept: application/json" -H "Content-Type:application/json" -X POST
 externalURL=https://i-query-winelist-table-dev-app1.192.168.42.244.nip.io/webhook/qxZO1niFa8OE9waPHlAWcMSrb9qXnngUnvKcWQsbQNtncINYJD
 curl -k --header "Content-Type: application/json" --request POST --data '[{"id": "42"}, {"id": "91"}]' https://i-upstream-mapping-test-upstream.192.168.42.244.nip.io/webhook/NIlFPj8kYv16yd0QLNK8wcAsevMSw73QuQcrlEnnSPeqbRrFPe
 
-curl -k --header "Content-Type: application/json" --request POST --data '{"header": "client.secret.centralu.norwich-demo-project"}' https://i-nifi-get-no-auth-with-yy-customer1.apps.syndesis.openshift.lingkto.com/webhook/Yhqw1BxjMGnFGw0WPupw3mMqxzydXfr8qjP4LmUWQmrH5ChVx6
+curl -k --header "Content-Type: application/json" --request POST --data '{"key": "client.secret.centralu.norwich-demo-project"}' https://i-nifi-get-swagger2-json-swagger2-0.apps.syndesis.openshift.lingkto.com/webhook/0OO1NcB0S4FCUFmNWegAVajBRQHdT9d4zmkK5OpJgXJeFKJZbJ
+
+
+Tweeter
+------------
+curl -k --header "Content-Type: application/json" --request POST --data '{"userid": "201149726"}' https://i-tweeter-get-user-bearer-swagger2-0.apps.syndesis.openshift.lingkto.com/webhook/ZrI84QqwyzSLu50nAcVvHZgsqPjRbIWcJN8iJygEjjUDxA6rpo
+
+curl -k --header "Content-Type: application/json" --request POST --data '{"userid": "201149726"}' https://i-tweeter-get-user-swagger2-0.apps.syndesis.openshift.lingkto.com/webhook/j7BCnhZyACTBDCXEPbYNYlcWCRCsLBixoW2wpkkmRcapoDetg3
+
+
 
 
 curl -k --header "Content-Type: application/json" --request POST --data '[{"id": "00Q2y000002hisDEAQ"}, {"id": "00Q2y000002hisCEAQ"}]' https://i-create-sf-lead-dev1.192.168.42.51.nip.io/webhook/i3BuhRYBKSJhhFTlUIBlBKFgGhkQMdIeYNLh9oWdRgNn4bQlRM

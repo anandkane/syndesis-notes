@@ -1,0 +1,16 @@
+https://medium.com/@codebyamir/the-java-developers-guide-to-ssl-certificates-b78142b3a0fc#:~:text=The%20truststore%20comes%20bundled%20with,establishes%20a%20connection%20over%20SSL.
+https://www.surevine.com/tlsssl-for-applications-right-and-wrong-ways-to-fix-it/
+
+openssl s_client -showcerts -connect self-signed.badssl.com:443
+echo | openssl s_client -connect badssl.com:443 | sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' > certificate.crt
+
+sudo keytool -import -v -trustcacerts -alias server-alias -keystore cacerts -keypass changeit -storepass changeit  -file ~/certificate.crt
+
+sudo keytool -delete -alias server-alias -keystore cacerts -storepass changeit
+
+keytool -printcert -file herong.crt
+sudo keytool -list -v -keystore cacerts -storepass changeit 
+
+-Djavax.net.debug=SSL,keymanager,trustmanager
+-Djavax.net.ssl.trustStore=/app/security/truststore.jks
+-Djavax.net.ssl.trustStorePassword=myTrustStorePassword
